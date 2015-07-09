@@ -1,0 +1,21 @@
+maxscale:
+  build: .
+  ports:
+    - "3306:3306"
+  links:
+    - mariadb01
+    - mariadb02
+
+mariadb01:
+  image: mariadb
+  ports:
+    - "13306:3306"
+  environment:
+    - MYSQL_ROOT_PASSWORD=p@ssw0rd
+
+mariadb02:
+  image: mariadb
+  ports:
+    - "23306:3306"
+  environment:
+    - MYSQL_ROOT_PASSWORD=p@ssw0rd
