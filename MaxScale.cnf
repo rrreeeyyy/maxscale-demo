@@ -1,5 +1,6 @@
 [maxscale]
-threads=4
+threads=1
+
 
 [MySQL Monitor]
 type=monitor
@@ -31,6 +32,8 @@ replace=select
 [Read Connection Router]
 type=service
 router=readconnroute
+enable_root_user=1
+localhost_match_wildcard_host=1
 servers=mariadb01,mariadb02
 user=root
 passwd=p@ssw0rd
@@ -38,6 +41,9 @@ passwd=p@ssw0rd
 [RW Split Router]
 type=service
 router=readwritesplit
+enable_root_user=1
+localhost_match_wildcard_host=1
+max_slave_connections=100%
 servers=mariadb01,mariadb02
 user=root
 passwd=p@ssw0rd
